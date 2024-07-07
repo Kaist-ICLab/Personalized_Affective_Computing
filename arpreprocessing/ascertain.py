@@ -8,7 +8,6 @@ from arpreprocessing.helpers import filter_signal, get_empatica_sampling
 from arpreprocessing.preprocessorlabel import PreprocessorLabel
 from arpreprocessing.signal import Signal, NoSuchSignal
 from arpreprocessing.subjectlabel import SubjectLabel
-from arpreprocessing.DataAugmentation_TimeseriesData import DataAugmentation
 
 
 class ASCERTAIN(PreprocessorLabel):
@@ -25,11 +24,11 @@ class ASCERTAIN(PreprocessorLabel):
 
 
 def original_sampling(channel_name: str):
-    if channel_name.startswith("GSR"):
+    if channel_name.startswith("eda"):
         return 128
-    if channel_name.startswith("ACC"):
+    if channel_name.startswith("acc"):
         return 128
-    if channel_name.startswith("ECG"):
+    if channel_name.startswith("ecg"):
         return 256
     if channel_name == "label":
         return 256
@@ -37,11 +36,11 @@ def original_sampling(channel_name: str):
 
 
 def target_sampling(channel_name: str):
-    if channel_name.startswith("GSR"):
+    if channel_name.startswith("eda"):
         return 8
-    if channel_name.startswith("ACC"):
+    if channel_name.startswith("acc"):
         return 8
-    if channel_name.startswith("ECG"):
+    if channel_name.startswith("ecg"):
         return 64
     if channel_name == "label":
         return 256
@@ -87,9 +86,11 @@ class ASCERTAINSubject(SubjectLabel):
     @staticmethod
     def restructure_data(data, label_type):
         # new_data = {'label': np.array(data['label']['AROUSAL]), "signal": {}}
-        new_data = {'label': np.array(data['label']['AROUSAL'].reshape(1,-1))[0], "signal": {}}
+        new_data = {'label': np.array(data['label']['VALENCE'].reshape(1,-1))[0], "signal": {}}
         for sensor in data['signal']:
             print('sensor:', sensor)
+            if (sensor == 'eda'):
+                data['signal'][sensor] = data['signal'][sensor].reshape(-1,1)
             for i in range(len(data['signal'][sensor][0])):
                 signal_name = '_'.join([sensor, str(i)])
                 print(signal_name)
@@ -101,6 +102,7 @@ class ASCERTAINSubject(SubjectLabel):
         self._logger.info("Filtering signals for subject {}".format(self.id))
         signals = data["signal"]
         for signal_name in signals:
+            print(signal_name)
             signals[signal_name] = filter_signal(signal_name, signals[signal_name], original_sampling, target_sampling)
         self._logger.info("Finished filtering signals for subject {}".format(self.id))
         return data
@@ -110,7 +112,7 @@ class ASCERTAINSubject(SubjectLabel):
 
         self.x = [Signal(signal_name, target_sampling(signal_name), []) for signal_name in data["signal"]]
 
-        for i in range(0, len(data["signal"]["ECG_0"]) - 640, 320): #10sec*64Hz window and 5sec*64Hz sliding
+        for i in range(0, len(data["signal"]["ecg_0"]) - 640, 320): #10sec*64Hz window and 5sec*64Hz sliding
             first_index, last_index = self._indexes_for_signal(i, "label")
             personalized_threshold = np.mean(data["label"])
 

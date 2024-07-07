@@ -8,7 +8,6 @@ from arpreprocessing.helpers import filter_signal, get_empatica_sampling
 from arpreprocessing.preprocessorlabel import PreprocessorLabel
 from arpreprocessing.signal import Signal, NoSuchSignal
 from arpreprocessing.subjectlabel import SubjectLabel
-from arpreprocessing.DataAugmentation_TimeseriesData import DataAugmentation
 
 
 class Case(PreprocessorLabel):

@@ -8,7 +8,6 @@ from arpreprocessing.helpers import filter_signal, get_empatica_sampling
 from arpreprocessing.preprocessor import Preprocessor
 from arpreprocessing.signal import Signal, NoSuchSignal
 from arpreprocessing.subject import Subject
-from arpreprocessing.DataAugmentation_TimeseriesData import DataAugmentation
     
 
 class Wesad(Preprocessor):

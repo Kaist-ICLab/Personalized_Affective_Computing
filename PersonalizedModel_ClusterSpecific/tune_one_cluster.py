@@ -2,10 +2,10 @@ import sys
 
 from experiment.hyperparametertuning import HyperparameterTuning
 from experiment.wesadexperiment_cluster import WesadExperimentNFold
-from experiment.kemoworkexperiment_cluster import KEmoWorkExperimentNFold
 from experiment.caseexperiment_cluster import CaseExperimentNFold
 from experiment.kemoconexperiment_cluster import KEmoConExperimentNFold
 from experiment.ascertainexperiment_cluster import ASCERTAINExperimentNFold
+from experiment.amigosexperiment_cluster import AMIGOSexperimentNFold
 from utils.loggerwrapper import GLOBAL_LOGGER
 from utils.utils import set_available_gpus
 
@@ -13,14 +13,14 @@ from utils.utils import set_available_gpus
 def get_dataset(name):
     if name.startswith("wesad_fold_"):
         return WesadExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
-    if name.startswith("kemowork_fold_"):
-        return KEmoWorkExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
     if name.startswith("case_fold_"):
         return CaseExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
     if name.startswith("kemocon_fold_"):
         return KEmoConExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
     if name.startswith("ascertain_fold_"):
         return ASCERTAINExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
+    if name.startswith("amigos_fold_"):
+        return AMIGOSexperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
     raise Exception(f"No such dataset/experiment as {name}")
 
 
