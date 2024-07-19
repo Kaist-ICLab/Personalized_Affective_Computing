@@ -4,8 +4,8 @@ This is a supplementary repository for the paper titled ???.
 1. Execute `requirements.txt` and `setup.py` to install the necessary packages.
 2. Save the data in the `archives` folder.
 3. Run `ar_dataset_preprocessing.py` for the desired dataset preprocessing. The processed data will be saved in `mts_archive`.
-4. Run `./`*datasetname*`tuning.sh X` in the desired folder (X: id of GPU).
-5. Execute ``*datasetname*`results.py`.
+4. Run `./*datasetname*tuning.sh X` in the desired folder (X: id of GPU).
+5. Execute `*datasetname*results.py`.
 
 ## STRUCTURE
 
@@ -18,7 +18,7 @@ This is a supplementary repository for the paper titled ???.
 
 ### arpreprocessing Folder
 - When you run `ar_dataset_preprocessing.py`, the codes inside this folder will be executed.
-- The main files are ``*datasetname*`.py`, which perform winsorization, filtering, resampling, normalization, and windowing and also formatting the dataset for deep learning models.
+- The main files are `*datasetname*.py`, which perform winsorization, filtering, resampling, normalization, and windowing and also formatting the dataset for deep learning models.
   - For datasets without user labels, we use `preprocessor.py` and `subject.py`, while those with labels, `preprocessorlabel.py` and `subjectlabel.py` are used.
 
 ### GeneralizedModel Folder
