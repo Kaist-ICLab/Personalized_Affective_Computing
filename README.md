@@ -49,5 +49,4 @@ This is a supplementary repository for the paper titled ???.
 - Also, using functions in the `clustering` folder, trait-based clustering is done for multi-task learning models.
 
 ## Acknowledgments
-Codes for non-personalized models, i.e., `arpreprocessing`, `GeneralizedModel`, and `multimodal_classifiers` folder, are based on code provided at the "dl-4-tsc" GitHub repository.
-[dl-4-tsc GitHub Repository](https://github.com/Emognition/dl-4-tsc)
+Codes for non-personalized models, i.e., `arpreprocessing`, `GeneralizedModel`, and `multimodal_classifiers` folder, are based on code provided at the "dl-4-tsc" GitHub repository. [https://github.com/Emognition/dl-4-tsc](https://github.com/Emognition/dl-4-tsc)
