@@ -50,3 +50,11 @@ This is a supplementary repository for the paper titled ???.
 
 ## Acknowledgments
 Codes for non-personalized models, i.e., `arpreprocessing`, `GeneralizedModel`, and `multimodal_classifiers` folder, are based on code provided at the "dl-4-tsc" GitHub repository. [https://github.com/Emognition/dl-4-tsc](https://github.com/Emognition/dl-4-tsc)
+
+The datasets used are as follows, and they can be downloaded from the provided links:
+  1. **AMIGOS**: [AMIGOS: A Dataset for Affect, Personality and Mood Research on Individuals and Groups](http://www.eecs.qmul.ac.uk/mmv/datasets/amigos/)
+  2. **ASCERTAIN**: [ASCERTAIN: Emotion and Personality Recognition Using Commercial Sensors](https://ascertain-dataset.github.io/)
+  3. **CASE**: [A dataset of continuous affect annotations and physiological signals for emotion analysis](https://gitlab.com/karan-shr/case_dataset)
+  4. **WESAD**: [WESAD: Multimodal Dataset for Wearable Stress and Affect Detection](https://ubicomp.eti.uni-siegen.de/home/datasets/icmi18/)
+  5. **K-EmoCon**: [K-EmoCon, a multimodal sensor dataset for continuous emotion recognition in naturalistic conversations](https://zenodo.org/records/3814370)
+
