@@ -88,7 +88,7 @@ class AMIGOSSubject(SubjectLabel):
 
     @staticmethod
     def restructure_data(data, label_type):
-        new_data = {'label': np.array(data['label']['AROUSAL']), "signal": {}}
+        new_data = {'label': np.array(data['label']['VALENCE']), "signal": {}}
         # new_data = {'label': np.array(data['label']['AROUSAL'].reshape(1,-1))[0], "signal": {}}
         # new_data = {'label': np.array(data['label']['VALENCE'].reshape(1,-1))[0], "signal": {}}
         for sensor in data['signal']:
@@ -127,6 +127,7 @@ class AMIGOSSubject(SubjectLabel):
                 first_index, last_index = self._indexes_for_signal(i, signal)
                 if len(data["signal"][signal][first_index:last_index]) == 10*target_sampling(signal):
                     self.x[channel_id].data.append(data["signal"][signal][first_index:last_index])
+                    print(np.array(data["signal"][signal][first_index:last_index]).shape)
                 else:
                     self.x[channel_id].data.append(self.x[channel_id].data[-1])
                 channel_id += 1

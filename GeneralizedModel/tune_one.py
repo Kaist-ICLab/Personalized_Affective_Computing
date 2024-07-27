@@ -5,6 +5,7 @@ from experiment.wesadexperiment import WesadExperimentNFold
 from experiment.caseexperiment import CaseExperimentNFold
 from experiment.kemoconexperiment import KEmoConExperimentNFold
 from experiment.amigosexperiment import AMIGOSExperimentNFold
+from experiment.kemophoneexperiment import KEmoPhoneExperimentNFold
 from utils.loggerwrapper import GLOBAL_LOGGER
 from utils.utils import set_available_gpus
 
@@ -18,6 +19,8 @@ def get_dataset(name):
         return KEmoConExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
     if name.startswith("amigos_fold_"):
         return AMIGOSExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
+    if name.startswith("kemophone_fold_"):
+        return KEmoPhoneExperimentNFold(GLOBAL_LOGGER, int(name[-5:-3]), int(name[-2:]))
     raise Exception(f"No such dataset/experiment as {name}")
 
 
