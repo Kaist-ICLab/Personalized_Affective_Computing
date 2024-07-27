@@ -9,27 +9,45 @@ from collections import defaultdict
 from arpreprocessing.dataset import Dataset
 from utils.loggerwrapper import GLOBAL_LOGGER
 
-# WESAD
-# SIGNALS_LEN = 14
-# Case
-# SIGNALS_LEN = 8
-# Ascertain
+
+## AMIGOS
+# SIGNALS_LEN = 20
+# SUBJECTS_IDS = [1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,25,26,27,29,30,31,32,34,35,36,37,38,39,40]
+# dataset_name = "AMIGOS"
+
+## Ascertain
 SIGNALS_LEN = 8
-# WESAD
-# SUBJECTS_IDS = list(it.chain(range(2, 12), range(13, 18)))
-# # Case
-# SUBJECTS_IDS = range(1,31)
-# Ascertain
 SUBJECTS_IDS = range(1,59)
+dataset_name = "ASCERTAIN"
+
+## WESAD
+# SIGNALS_LEN = 14
+# SUBJECTS_IDS = list(it.chain(range(2, 12), range(13, 18)))
+#dataset_name = "WESAD"
+
+## Case
+# SIGNALS_LEN = 8
+# SUBJECTS_IDS = range(1,31)
+# dataset_name = "Case"
+
+## KEmoCon
+# SIGNALS_LEN = 6
+# SUBJECTS_IDS = [1, 4, 5, 8, 9, 10, 11, 13, 14, 15, 16, 19, 22, 23, 24, 25, 26, 27, 28, 31, 32]
+# dataset_name = "KEmoCon"
+
+## KEmoPhone
+# SIGNALS_LEN = 6
+# SUBJECTS_IDS = [1,2,3,5,6,8,9,10,12,13,15,19,21,23,26,28,30,31,32,33,35,39,40,42,45,47,48,49,50,51,52,53,55,57,60,61,66,67,69,70,72,75,76,77,78,79,80]
+# dataset_name = "KEmoPhone"
+
+
 EPOCH = 100
 PATIENCE = 5
 UPDATE_STEP_TRAIN = 10
 UPDATE_STEP_TEST = 20
 K = 5
-dataset_name = "Ascertain"
 
 def np_to_tensor(list_of_numpy_objs):
-    # return (tf.convert_to_tensor(obj) for obj in list_of_numpy_objs)
     return [tf.convert_to_tensor(obj, dtype=tf.float32) for obj in list_of_numpy_objs]
 
 
