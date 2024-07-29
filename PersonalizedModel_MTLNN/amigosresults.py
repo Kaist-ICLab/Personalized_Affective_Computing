@@ -14,7 +14,7 @@ SUBJECTS_IDS = [1, 2, 3, 4, 5, 7, 8, 10, 12, 14, 19, 20, 21, 23, 24, 25, 26, 27,
 def datasets_metrics():
     results = []
 
-    for dataset in ["ASCERTAIN_58_fold"]:
+    for dataset in ["AMIGOS_31_fold"]:
         setups = [f"it_{it:02d}" for it in range(1)]
         add_baseline(dataset, results)
 
@@ -92,7 +92,7 @@ def count_classes_representation():
     counts = {}
     results = []
 
-    for dataset in ["ASCERTAIN"]:
+    for dataset in ["AMIGOS"]:
         counts[dataset] = []
         for subject in range(100):
             path = f"archives/mts_archive/{dataset}/y_{subject}.pkl"
@@ -114,14 +114,14 @@ def count_classes_representation():
 def count_test_classes_representation():
     results = []
 
-    for dataset in ["ASCERTAIN"]:
+    for dataset in ["AMIGOS"]:
         y_num = []
         result_path = "./results"
         folder_names = os.listdir(result_path)
         folder_names.sort()
 
         for folder_name in folder_names:
-            if folder_name.startswith("ASCERTAIN_58fold_"):
+            if folder_name.startswith("AMIGOS_31_fold"):
                 path = os.path.join(result_path, folder_name, "tune_00/fcnM/it_00/predictions.txt")
                 if not os.path.exists(path):
                     continue
@@ -129,7 +129,7 @@ def count_test_classes_representation():
                     lines = f.readlines()
                     y_num.append(len(lines[0].strip().split()))
                     
-    results.append(["ASCERTAIN", np.mean(y_num), np.std(y_num)])
+    results.append(["AMIGOS", np.mean(y_num), np.std(y_num)])
 
     df = pd.DataFrame(results, columns=["Dataset", "Num of Test Data (mean)", "Num of Test Data (std)"])
     return df
@@ -227,7 +227,7 @@ def print_classification_metrics_for_LOSO(results):
 
     with pd.option_context("display.float_format", "{:,.2f}".format):
         latex = prepare_latex_for_paper(best_results.to_latex(index=False, column_format="|l|l|r|r|r|"),
-                                        f"Best performing model for ASCERTAIN in detail", f"tab:datasetsClassesLOSO")
+                                        f"Best performing model for AMIGOS in detail", f"tab:datasetsClassesLOSO")
                 
         print(latex)
 
@@ -301,7 +301,7 @@ def print_test_classes_representation():
 
 if __name__ == '__main__':
     results = metrics_for_best_evaluations()
-    create_file_for_LOSO(results, "ASCERTAIN")
+    create_file_for_LOSO(results, "AMIGOS")
 
     # # This prints out detailed LOSO classification metrics for the best performing (highest F1 score) model
     # print_classification_metrics_for_LOSO(results)
@@ -332,7 +332,7 @@ if __name__ == '__main__':
 
     results = prepare_readable_values(results)
 
-    create_file_for_cd_diagram(results, "ASCERTAIN")
+    create_file_for_cd_diagram(results, "AMIGOS")
 
     print_metrics_for_datasets()
 

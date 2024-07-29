@@ -89,8 +89,6 @@ class AMIGOSSubject(SubjectLabel):
     @staticmethod
     def restructure_data(data, label_type):
         new_data = {'label': np.array(data['label']['VALENCE']), "signal": {}}
-        # new_data = {'label': np.array(data['label']['AROUSAL'].reshape(1,-1))[0], "signal": {}}
-        # new_data = {'label': np.array(data['label']['VALENCE'].reshape(1,-1))[0], "signal": {}}
         for sensor in data['signal']:
             print('sensor:', sensor)
             if (sensor == 'eda'):

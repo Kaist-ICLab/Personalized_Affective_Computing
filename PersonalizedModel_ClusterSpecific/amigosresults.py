@@ -8,7 +8,7 @@ import pandas as pd
 import scipy.stats
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 
-SUBJECTS_IDS = [1,2,3,4,5,6,7,10,11,13,14,15,16,17,18,19,20,25,26,27,29,30,31,32,34,35,36,37,38,39,40]
+Case_SUBJECTS = range(1,31)
 
 def datasets_metrics():
     results = []
@@ -18,7 +18,6 @@ def datasets_metrics():
         add_baseline(dataset, results)
 
         for architecture in ['fcnM', 'mlpLstmM', 'resnetM']:
-        # for architecture in ['fcnM']:
             for eval_i in range(1):
                 results += get_result(architecture, dataset, eval_i, setups)
     return pd.DataFrame(results, columns=["Dataset", "Architecture", "Fold", "Evaluation", "Loss", "Loss (std)", "Accuracy", "Accuracy (std)", "F1", "F1 (std)", "AUC", "AUC (std)", "Duration", "Duration (std)"])
@@ -84,7 +83,7 @@ def get_result(architecture, dataset, eval_i, setups):
 
 def paths_with_results_generator(architecture, dataset, eval_i, fold_i, folds_n, setups):
     for setup in setups:
-        yield f"results/{dataset}_{folds_n}fold_{fold_i:02d}/tune_{eval_i:02d}/{architecture}/{setup}/"
+        yield f"results_cluster/{dataset}_{folds_n}fold_{fold_i:02d}/tune_{eval_i:02d}/{architecture}/{setup}/"
 
 
 def count_classes_representation():
@@ -115,12 +114,12 @@ def count_test_classes_representation():
 
     for dataset in ["AMIGOS"]:
         y_num = []
-        result_path = "./results"
+        result_path = "./results_cluster"
         folder_names = os.listdir(result_path)
         folder_names.sort()
 
         for folder_name in folder_names:
-            if folder_name.startswith("AMIGOS_31fold_"):
+            if folder_name.startswith("AMIGOS_31_fold"):
                 path = os.path.join(result_path, folder_name, "tune_00/fcnM/it_00/predictions.txt")
                 if not os.path.exists(path):
                     continue

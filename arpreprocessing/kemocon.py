@@ -12,7 +12,6 @@ from arpreprocessing.subjectlabel import SubjectLabel
 
 class KEmoCon(PreprocessorLabel):
     SUBJECTS_IDS = [1, 4, 5, 8, 9, 10, 11, 13, 14, 15, 16, 19, 22, 23, 24, 25, 26, 27, 28, 31, 32]
-    # CHANNELS_NAMES = ['e4_eda', 'e4_acc', 'e4_temp', 'e4_bvp', 'eeg']
     CHANNELS_NAMES = ['e4_eda', 'e4_acc', 'e4_temp', 'e4_bvp']
 
     def __init__(self, logger, path, label_type):
@@ -86,7 +85,6 @@ class KEmoConSubject(SubjectLabel):
     def _restructure_data(self, data):
         self._logger.info("Restructuring data for subject {}".format(self.id))
         signals = self.restructure_data(data, self._label_type)
-        # signals = self.restructure_data_with_augmentation(data, self._label_type)
         self._logger.info("Finished restructuring data for subject {}".format(self.id))
 
         return signals
@@ -102,21 +100,6 @@ class KEmoConSubject(SubjectLabel):
                 print(data['signal'][sensor].shape)
                 signal = np.array([x[i] for x in data['signal'][sensor]])
                 new_data["signal"][signal_name] = signal
-        return new_data
-
-    @staticmethod
-    def restructure_data_with_augmentation(data, label_type):
-        duplicated_labels = np.tile(data['label'][label_type].reshape(1,-1)[0], 7)
-        new_data = {'label': duplicated_labels, "signal": {}}
-        for sensor in data['signal']:
-            print('sensor:', sensor)
-            for i in range(len(data['signal'][sensor][0])):
-                signal_name = '_'.join([sensor, str(i)])
-                print(signal_name)
-                signal = np.array([x[i] for x in data['signal'][sensor]])
-                data_augmentor = DataAugmentation(signal)
-                signal_augmented = data_augmentor.apply_all_augmentations()
-                new_data["signal"][signal_name] = signal_augmented
         return new_data
 
     def _filter_all_signals(self, data):

@@ -12,8 +12,6 @@ from arpreprocessing.subject import Subject
 
 class Wesad(Preprocessor):
     SUBJECTS_IDS = list(it.chain(range(2, 12), range(13, 18)))
-    SUBJECTS_IDS_STRESS_VER = (2, 3, 6, 9, 11, 14, 16)
-    SUBJECTS_IDS_FUN_VER = (4, 5, 7, 8, 10, 13, 15, 17)
 
     def __init__(self, logger, path):
         Preprocessor.__init__(self, logger, path, "WESAD", [], None, subject_cls=WesadSubject)
@@ -81,7 +79,6 @@ class WesadSubject(Subject):
     def _restructure_data(self, data):
         self._logger.info("Restructuring data for subject {}".format(self.id))
         signals = self.restructure_data(data)
-        # signals = self.restructure_data_with_augmentation(data)
         self._logger.info("Finished restructuring data for subject {}".format(self.id))
 
         return signals
@@ -97,22 +94,6 @@ class WesadSubject(Subject):
                     signal_name = '_'.join([device, type, str(i)])
                     signal = np.array([x[i] for x in data['signal'][device][type]])
                     new_data["signal"][signal_name] = signal
-        return new_data
-    
-    @staticmethod
-    def restructure_data_with_augmentation(data):
-        duplicated_labels = np.tile(data['label'], 7)
-        new_data = {'label': duplicated_labels, "signal": {}}
-        for device in data['signal']:
-            print('device:', device)
-            for type in data['signal'][device]:
-                print('type:', type)
-                for i in range(len(data['signal'][device][type][0])):
-                    signal_name = '_'.join([device, type, str(i)])
-                    signal = np.array([x[i] for x in data['signal'][device][type]])
-                    data_augmentor = DataAugmentation(signal)
-                    signal_augmented = data_augmentor.apply_all_augmentations()
-                    new_data["signal"][signal_name] = signal_augmented
         return new_data
 
     def _filter_all_signals(self, data):
