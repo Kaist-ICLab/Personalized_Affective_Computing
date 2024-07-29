@@ -16,14 +16,14 @@ from utils.loggerwrapper import GLOBAL_LOGGER
 # dataset_name = "AMIGOS"
 
 ## Ascertain
-SIGNALS_LEN = 8
-SUBJECTS_IDS = range(1,59)
-dataset_name = "ASCERTAIN"
+# SIGNALS_LEN = 8
+# SUBJECTS_IDS = range(1,59)
+# dataset_name = "ASCERTAIN"
 
 ## WESAD
-# SIGNALS_LEN = 14
-# SUBJECTS_IDS = list(it.chain(range(2, 12), range(13, 18)))
-#dataset_name = "WESAD"
+SIGNALS_LEN = 14
+SUBJECTS_IDS = list(it.chain(range(2, 12), range(13, 18)))
+dataset_name = "WESAD"
 
 ## Case
 # SIGNALS_LEN = 8

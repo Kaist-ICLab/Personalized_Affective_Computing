@@ -19,7 +19,8 @@ def main():
 
     dataset = CustomDataset()
    
-    result_dir = os.path.join('./results/ascertain')
+    result_dir = os.path.join('./results/WESAD')
+
     if not os.path.exists(result_dir):
         os.makedirs(result_dir)
     

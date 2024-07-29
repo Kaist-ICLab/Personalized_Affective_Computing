@@ -7,6 +7,7 @@ results_cluster
 results_tuning
 results_mtl
 model_save
+PersonalizedModel_FewShot/
 *.csv
 *.mat
 *.pkl

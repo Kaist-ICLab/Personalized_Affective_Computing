@@ -145,7 +145,7 @@ def n_fold_split_cluster_trait_experiment(subject_ids, n, dataset_name, seed=5):
         X_test_scaled = pd.DataFrame(scaler.transform(X_test.iloc[:,1:]))
         X_rest_scaled = pd.DataFrame(scaler.transform(X_rest.iloc[:,1:]))
 
-        k_value = 5
+        k_value = 2
         clusterer = KMeans(n_clusters=k_value, init='k-means++', n_init='auto', random_state=42)
         cluster_labels = clusterer.fit_predict(X_rest_scaled)
         X_rest_scaled['cluster'] = list(cluster_labels)

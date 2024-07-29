@@ -13,8 +13,8 @@ if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read("config.ini")
 
-    #dataset = Wesad(GLOBAL_LOGGER, config['Paths']['wesad_dir']).get_dataset()
-    #dataset.save(config['Paths']['mts_out_dir'])
+    dataset = Wesad(GLOBAL_LOGGER, config['Paths']['wesad_dir']).get_dataset()
+    dataset.save(config['Paths']['mts_out_dir'])
 
     #dataset = Case(GLOBAL_LOGGER, config['Paths']['case_dir'], 'AROUSAL').get_dataset()
     #dataset = Case(GLOBAL_LOGGER, config['Paths']['case_dir'], 'VALENCE').get_dataset()
@@ -32,5 +32,5 @@ if __name__ == '__main__':
     # dataset = AMIGOS(GLOBAL_LOGGER, config['Paths']['amigos_dir'], 'VALENCE').get_dataset()
     # dataset.save(config['Paths']['mts_out_dir'])
 
-    dataset = KEmoPhone(GLOBAL_LOGGER, config['Paths']['kemophone_dir'], 'STRESS').get_dataset()
-    dataset.save(config['Paths']['mts_out_dir'])
+    # dataset = KEmoPhone(GLOBAL_LOGGER, config['Paths']['kemophone_dir'], 'STRESS').get_dataset()
+    # dataset.save(config['Paths']['mts_out_dir'])
