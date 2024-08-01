@@ -1,4 +1,4 @@
-This is a supplementary repository for the paper titled ???.
+This is a supplementary repository for the paper titled **Systematic Evaluation of Personalized Deep Learning Models for Affect Recognition**.
 
 ## RUN
 1. Execute `requirements.txt` and `setup.py` to install the necessary packages.
@@ -9,12 +9,14 @@ This is a supplementary repository for the paper titled ???.
 
 ## STRUCTURE
 
+#### archives Folder
+- You need to create a `data` folder manually.
+  -  The top-level folders contain raw data, and `mts_archive` contains data after each preprocessing.
+
 #### DATASET_PREPARE Folder
 - We have to format all datasets into the same structure as the WESAD dataset.
   - In each `Si` folder, have a file for each participant in `.pkl`.
   - In each `.pkl` file, label and sensor signal data are in `numpy.array` format.
-- `archives` folder: You need to create a `data` folder manually.
-  - The top-level folders contain raw data, and `mts_archive` contains data after each preprocessing.
 
 #### arpreprocessing Folder
 - When you run `ar_dataset_preprocessing.py`, the codes inside this folder will be executed.
@@ -33,14 +35,14 @@ This is a supplementary repository for the paper titled ???.
 
 #### PersonalizedModel_Hybrid Folder
 - Functions in the `multimodal_classifiers_hybrid` folder are used for model training.
-- For each deep learning structure, hybrid (partially-personalized) models are implemented.
+  - For each deep learning structure, hybrid (partially-personalized) models are implemented.
 - For a detailed explanation of model implementation, please refer to section 3.4.1 Unseen User-Dependent Hybrid part.
 
 #### PersonalizedModel_ClusterSpecific Folder
 - Functions in the `multimodal_classifiers` folder and `clustering` folder are used for model training.
   - As explained in section 3.4.2 Unseen User-Independent, the difference between generalized model and cluster-specific personalized model is the data used for training, not the model itself.
-  - Therefore, we use the same functions in the `multimodal_classifiers` folder as in generalized models.
-- However, using functions in the `clustering` folder, trait-based clustering is done and its result is used for model training.
+    - Therefore, we use the same functions in the `multimodal_classifiers` folder as in generalized models.
+  - Using functions in the `clustering` folder, trait-based clustering is done and its result is used for model training.
 
 #### PersonalizedModel_MTLNN Folder
 - Functions in the `multimodal_classifiers_mtl` folder and `clustering` folder are used for model training.
@@ -57,4 +59,4 @@ The datasets used are as follows, and they can be downloaded from the provided l
   3. **CASE**: [A dataset of continuous affect annotations and physiological signals for emotion analysis](https://gitlab.com/karan-shr/case_dataset)
   4. **WESAD**: [WESAD: Multimodal Dataset for Wearable Stress and Affect Detection](https://ubicomp.eti.uni-siegen.de/home/datasets/icmi18/)
   5. **K-EmoCon**: [K-EmoCon, a multimodal sensor dataset for continuous emotion recognition in naturalistic conversations](https://zenodo.org/records/3814370)
-
+  6. **K-EmoPhone**: [K-EmoPhone, A Mobile and Wearable Dataset with In-Situ Emotion, Stress, and Attention Labels](https://doi.org/10.5281/zenodo.7606611)
